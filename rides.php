@@ -61,12 +61,34 @@ session_start();
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="user-log">
 
-                                <a data-toggle="modal" data-target="#loginModal">
+                                <?php
+
+                                if($_SESSION['logged-in'] != 1)
+                                {
+                                    ?>
+
+                                    <a data-toggle="modal" data-target="#loginModal">
                                     Log in
-                                </a> /
-                                <a data-toggle="modal" data-target="#regModal">
-                                    Sign up
-                                </a>
+                                    </a> /
+                                    <a data-toggle="modal" data-target="#regModal">
+                                        Sign up
+                                    </a>
+
+                                <?php     
+                                }
+
+                                else
+                                {
+                                    ?>
+
+                                    <a data-toggle="modal" href= "php/logout.php">
+                                    Log out
+                                    </a> 
+
+                                    <?php
+                                }
+
+                                ?>
 
                             </div><!-- end .user-log -->
                         </div><!-- end .col-sm-4 -->

@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 include 'config.php';
 
 $destination= $_POST['destination'];
@@ -19,15 +21,21 @@ $data2= mysqli_query($connection, $query) or die(mysqli_error($connection));
 
 echo "Here 2";
 
-$query= "SELECT COUNT(pid) FROM person";
-$data3=  (mysqli_query($connection, $query) or die(mysqli_error($connection)));
+// $query= "SELECT COUNT(pid) FROM person";
+// $data3=  mysqli_query($connection, $query) or die(mysqli_error($connection));
+
+$name= $_SESSION['name'];
+$email= $_SESSION['email'];
+
+$query= "SELECT pid FROM person WHERE name= '$name' AND email= '$email' ";
+$data3=  mysqli_query($connection, $query) or die(mysqli_error($connection));
 
 echo "Here 3";
 
-$pid= mysqli_fetch_assoc($data3);
-echo $pid[0];
+// $pid= mysqli_fetch_assoc($data3);
+// echo $pid[0];
 
-echo 'This is data 3 '.$data3.'<br>'.gettype($data3);
+// echo 'This is data 3 '.$data3.'<br>'.gettype($data3);
 
 $query= "INSERT INTO rides (source, destnation, pid, seats, date, cid) VALUES ('$source', '$destination', '$data3', '$seats', '$date', '$data2' ) "; 
 $data4= mysqli_query($connection, $query) or die(mysqli_error($connection));

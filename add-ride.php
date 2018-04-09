@@ -81,7 +81,7 @@ session_start();
                                 {
                                     ?>
 
-                                    <a data-toggle="modal">
+                                    <a data-toggle="modal" href= "php/logout.php">
                                     Log out
                                     </a> 
 

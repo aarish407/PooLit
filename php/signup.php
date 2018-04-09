@@ -58,6 +58,8 @@ function NewUser($connection)
     echo "successfully registered";
 
     $_SESSION['logged-in']= 1;
+    $_SESSION['name']= $name;
+    $_SESSION['email']= $email;
 
     header("location: ../index.php");
 }
