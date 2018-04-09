@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
 <!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
@@ -55,12 +61,34 @@
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="user-log">
 
-                                <a data-toggle="modal" data-target="#loginModal">
+                                <?php
+
+                                if($_SESSION['logged-in'] != 1)
+                                {
+                                    ?>
+
+                                    <a data-toggle="modal" data-target="#loginModal">
                                     Log in
-                                </a> /
-                                <a data-toggle="modal" data-target="#regModal">
-                                    Sign up
-                                </a>
+                                    </a> /
+                                    <a data-toggle="modal" data-target="#regModal">
+                                        Sign up
+                                    </a>
+
+                                <?php     
+                                }
+
+                                else
+                                {
+                                    ?>
+
+                                    <a data-toggle="modal">
+                                    Log out
+                                    </a> 
+
+                                    <?php
+                                }
+
+                                ?>                                
 
                             </div><!-- end .user-log -->
                         </div><!-- end .col-sm-4 -->
@@ -460,14 +488,14 @@
                     </div>
 
                     <div class="modal-body">
-                        <form action="" novalidate autocomplete="off" class="idealforms reg">
+                        <form action="php/signup.php" method= "POST" role= "form" novalidate autocomplete="off" class="idealforms reg">
 
                             <div class="log-header">
                                 <span class="log-in">Sign up</span>
                             </div>
 
                             <div class="field">
-                                <input name="username" type="text" placeholder="Username">
+                                <input name="name" type="text" placeholder="Name">
                                 <span class="error"></span>
                             </div>
 
@@ -482,12 +510,12 @@
                             </div>
 
                             <div class="field">
-                                <input name="confirmpass" type="password"  placeholder="Password">
+                                <input name="confirmpass" type="password"  placeholder="Confirm Password">
                                 <span class="error"></span>
                             </div>
 
                             <div class="field buttons">
-                                <button type="submit" class="submit btn green-color">Sign up</button>
+                                <button type="submit" name="signup-submit" class="submit btn green-color">Sign up</button>
                             </div>
 
                             <div class="clearfix"></div>

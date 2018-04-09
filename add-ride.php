@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
 <!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
@@ -54,14 +60,35 @@
 
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="user-log">
+                                
+                                <?php
 
-                                <a data-toggle="modal" data-target="#loginModal">
+                                if($_SESSION['logged-in'] != 1)
+                                {
+                                    ?>
+
+                                    <a data-toggle="modal" data-target="#loginModal">
                                     Log in
-                                </a> /
-                                <a data-toggle="modal" data-target="#regModal">
-                                    Sign up
-                                </a>
+                                    </a> /
+                                    <a data-toggle="modal" data-target="#regModal">
+                                        Sign up
+                                    </a>
 
+                                <?php     
+                                }
+
+                                else
+                                {
+                                    ?>
+
+                                    <a data-toggle="modal">
+                                    Log out
+                                    </a> 
+
+                                    <?php
+                                }
+
+                                ?>
                             </div><!-- end .user-log -->
                         </div><!-- end .col-sm-4 -->
 
@@ -149,10 +176,10 @@
 
                         <div class="page-content add-new-ride">
 
-                            <form action="" novalidate autocomplete="off" class="idealforms add-ride">
+                            <form action="php/confirm-ride.php" method= "post" novalidate autocomplete="off" class="idealforms add-ride">
 
                                 <div class="field">
-                                    <select id="destination" name="destination">
+                                    <select id="destination" name="source">
                                         <option value="default">From</option>
                                             <option>Pune</option>
                                             <option>Hyderabad</option>
@@ -165,7 +192,7 @@
                                 </div>
 
                                 <div class="field">
-                                    <select id="destinationd" name="destinationd">
+                                    <select id="destinationd" name="destination">
                                         <option value="default">To</option>
                                         <option>Pune</option>
                                             <option>Hyderabad</option>
@@ -182,7 +209,15 @@
                                 </div>
 
                                 <div class="field">
-                                    <select id="destination" name="destination">
+                                    <input name="carname" type="text" placeholder="Car Name" >
+                                </div>
+
+                                <div class="field">
+                                    <input name="platenumber" type="text" placeholder="Liscence Plate Number">
+                                </div>
+
+                                <div class="field">
+                                    <select id="destination" name="seats">
                                         <option value="default">Number of seats</option>
                                         <option>1</option>
                                         <option>2</option>
