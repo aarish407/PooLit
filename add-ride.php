@@ -161,6 +161,19 @@ session_start();
         <section class="main-content">
 
             <div class="container">
+
+            <?php
+            
+            if($_SESSION['ride-created'] == 1)
+            {
+                ?>
+
+                Ride Created
+
+                <?php
+            }
+
+            ?>
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 col-xs-12">

@@ -128,13 +128,13 @@ session_start();
 
                                                 <ul class="navigation">
                                                     <li>
-                                                        <a href="index.html">Home</a>
+                                                        <a href="index.php">Home</a>
                                                     </li>
                                                     <li>
-                                                        <a href="rides.html">Rides</a>
+                                                        <a href="rides.php">Rides</a>
                                                     </li>
                                                     <li>
-                                                        <a href="add-ride.html">Create</a>
+                                                        <a href="add-ride.php">Create</a>
                                                     </li>
                                                     
                                                 </ul>
@@ -262,34 +262,53 @@ session_start();
 
                                 <article class="ride-box clearfix">
 
-                                    <div class="ride-content">
-                                        <h3><a href="#">From Plovdiv to Sofia</a></h3>ride by <a href="#">Stefan Valkov</a>
-                                    </div>
+                                <?php
+                                    include 'php/config.php';
 
-                                    <ul class="ride-meta">
+                                    $query= "SELECT * FROM rides";
+                                    $data= mysqli_query($connection, $query) or die(mysqli_error($connection));
 
-                                        <li class="ride-date">
-                                            <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                                <i class="fa fa-calendar"></i>
-                                                July 20, 2014 at 19:00 PM
-                                            </a>
-                                        </li><!-- end .ride-date -->
+                                    while($row= mysqli_fetch_array($data))
+                                    {
+                                        ?>
+                                        
+                                        <div class="ride-content">
+                                            <h3><a href="#">From <?php echo $row['source'] ?> to <?php echo $row['destination'] ?></a></h3>ride by <a href="#"> <?php $row['name'] ?> </a>
+                                        </div>
 
-                                        <li class="ride-people">
+                                        <ul class="ride-meta">
+
+                                            <li class="ride-date">
+                                                <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
+                                                    <i class="fa fa-calendar"></i>
+                                                    <?php echo $row['date'] ?>
+                                                </a>
+                                            </li><!-- end .ride-date -->
+                                        </ul><!-- end .ride-meta -->  
+                                        
+                                        <?php
+                                    }
+                                ?>
+
+                                    
+
+                                    
+
+                                        <!-- <li class="ride-people">
                                             <a href="#" class="tooltip-link" data-original-title="Number of seats" data-toggle="tooltip">
                                                 <i class="fa fa-user"></i>
                                                 1
                                             </a>
                                         </li><!-- end .ride-people -->
 
-                                        <li>
+                                        <!-- <li>
                                             <a href="#">
                                                 <i class="fa fa-file"></i>
                                                 Read more
                                             </a>
-                                        </li>
+                                        </li> -->
 
-                                    </ul><!-- end .ride-meta -->
+                                    
 
                                 </article><!-- end .ride-box -->
 
